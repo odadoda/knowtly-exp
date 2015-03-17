@@ -1,0 +1,75 @@
+* {
+	font-family: "menlo", monospace;
+}
+
+body {
+	background: #eee;
+	color: #111;
+	position: relative;
+	margin: 0;
+}
+
+h1,h2,h3,h4,h5,h6,li,dt,dd,p,a,div {
+	font-size: 12px;
+	font-weight: normal;
+	margin: 0;
+	line-height: 1.8;
+}
+
+dl,dt,dd {
+	margin:0;
+}
+.audible {
+	position: absolute;
+	left: -100000px;
+}
+
+.layout-33-66 {
+	width: 100%;
+	min-height: 50px;
+	background: skyblue;	
+}
+
+.c33 {
+	float: left;
+	width:33%;
+	min-height: 50px;
+	background-color: yellow;
+}
+
+.c66 {
+	float:left;
+	width: 66%;
+	min-height: 50px;
+	background-color: 
+}
+
+.note {
+	display: flex;
+	margin: 10px;
+}
+
+.note header {
+	order: 1;
+	flex: 1 1 22%;
+}
+
+.note aside {
+	order: 2;
+	flex: 1 1 11%;
+}
+
+.note .main {
+	flex: 1 1 66%;
+	order: 3;
+	padding: 0 10px;
+}
+
+.note dd {
+	padding:0 3px;
+	background: skyblue;
+	border-bottom: 1px dashed #eee;	
+}
+.note dd:last-child {
+	border: 0 none;
+}
