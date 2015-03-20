@@ -12,7 +12,9 @@
 			<dl class="tags">
 				<dt class="audible">Tags</dt>
 				<dd data-th-each="tag : ${note.tags}">
-					<span data-th-text="${tag}" data-th-remove="tag"></span>
+					<a data-th-attr="href=${'?q='+tag}" data-th-text="${tag}" >
+						sf
+					</a>
 				</dd>
 			</dl>
 		</aside>

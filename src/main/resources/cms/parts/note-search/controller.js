@@ -1,27 +1,43 @@
 var stk  = require('stk/stk');
 var util = require('utilities');
 
-
+/**************************
+*	GET
+****************************/
 exports.get = function( req ){
+	
 	var actionUrl = execute('portal.componentUrl', {
 		component: 'main/0'
 	});
 	
 	// get tags
-	var tags = execute('content.query',{
-		contentType: [
-			"base:tag"
-		]
-	});
+	var aggregationResult = execute('content.query', {
+		start: 0,
+		count: 0,
+		sort: 'createdTime DESC',
+		contentTypes: ["com.enonic.xp.modules.knowlty.knowtly-exp:note"],
+		
+		aggregations: {
+	        tags: {
+	            terms: {
+	                field: "data.tags",
+	                order: "_count desc",
+	                size: 50
+	            }
+	        }
+        
+    }	});
 	
-	stk.log('....');
-	stk.log(tags);	
+	var tags = new Array();
+	for( var i = 0; i < aggregationResult.total; i++ ){
+		var localData = aggregationResult.aggregations.tags.buckets[i];
+		tags.push(localData);
+	}
 	
 	var param = {
-		pewpew: "pewpew",
 		actionUrl: actionUrl,
 		tags: tags,
-		tagCount: 0
+		tagCount: aggregationResult.total
 	};
 	var view = resolve('note-search.html');
 	
@@ -29,12 +45,13 @@ exports.get = function( req ){
 };
 
 
+
+/**************************
+*	POST 
+****************************/
 exports.post = function( req ){
 	
-	
-	
 	var urlParams = req.formParams;
-	
 	
 	var query = "";
 	
@@ -45,9 +62,8 @@ exports.post = function( req ){
 	
 	
 	var result = execute('content.query', {
-
 		start: 0,
-		count: 1000,
+		count: 100,
 		sort: 'createdTime DESC',
 		contentTypes: [
 				"com.enonic.xp.modules.knowlty.knowtly-exp:note" 

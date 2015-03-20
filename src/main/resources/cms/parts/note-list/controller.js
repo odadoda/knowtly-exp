@@ -5,7 +5,6 @@ exports.get = function(req){
 	
 		
     var component = execute('portal.getComponent');
-	//var content = execute('portal.getContent', '/Notes/');
 	var content = execute('content.getChildren', {
 	    key: '/shd/notes',
 	    start: 0,
@@ -18,24 +17,25 @@ exports.get = function(req){
 	
 	var query = "";
 	if( urlParams.q ){
+		stk.log(urlParams.q);
 		query = 'fulltext("data.title", "' + urlParams.q + '", "AND") OR fulltext("data.tags", "' + urlParams.q + '", "AND")';
 	}
-	/*
 	
 	var result = execute('content.query', {
 		start: 0,
 		count: 1000,
 		sort: 'createdTime DESC',
 		contentTypes: [
-			"com.enonic.xp.modules.knowlty.knowtly:note" 
+			"com.enonic.xp.modules.knowlty.knowtly-exp:note" 
 			],
 		query: query
 	});
 	
+	stk.log(result);
+	
 	if( result.contents.length == 0){
 		result = content;
 	}
-	*/
 	
 	var notes = new Array();
 	
