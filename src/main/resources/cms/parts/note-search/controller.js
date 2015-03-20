@@ -3,14 +3,25 @@ var util = require('utilities');
 
 
 exports.get = function( req ){
-	stk.log("inside get");
 	var actionUrl = execute('portal.componentUrl', {
 		component: 'main/0'
 	});
 	
+	// get tags
+	var tags = execute('content.query',{
+		contentType: [
+			"base:tag"
+		]
+	});
+	
+	stk.log('....');
+	stk.log(tags);	
+	
 	var param = {
 		pewpew: "pewpew",
-		actionUrl: actionUrl
+		actionUrl: actionUrl,
+		tags: tags,
+		tagCount: 0
 	};
 	var view = resolve('note-search.html');
 	
@@ -20,28 +31,30 @@ exports.get = function( req ){
 
 exports.post = function( req ){
 	
-	stk.log(req);
+	
 	
 	var urlParams = req.formParams;
 	
-	stk.log(urlParams);
 	
 	var query = "";
 	
 	if( urlParams.q ){
-		stk.log("inside q");
+		stk.log("inside q: " + urlParams.q);
 		query = 'fulltext("data.title", "' + urlParams.q + '", "AND") OR fulltext("data.tags", "' + urlParams.q + '", "AND")';
 	}
-
+	
+	
 	var result = execute('content.query', {
+
 		start: 0,
 		count: 1000,
 		sort: 'createdTime DESC',
 		contentTypes: [
-			"com.enonic.xp.modules.knowlty.knowtly:note" 
+				"com.enonic.xp.modules.knowlty.knowtly-exp:note" 
 			],
 		query: query
 	});
+	
 	
 	var notes = new Array();
 	

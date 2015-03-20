@@ -73,3 +73,19 @@ dl,dt,dd {
 .note dd:last-child {
 	border: 0 none;
 }
+#knowtly-search {
+	padding: 10px;	
+}
+
+#knowtly-search input[type=submit]{
+	display: none;
+}
+
+#knowtly-search input[type="search"] {
+	box-sizing: border-box;
+	width: 100%;
+	border: 0px none;
+	background: #333;
+	color: #eee;
+	padding: 10px;
+}
