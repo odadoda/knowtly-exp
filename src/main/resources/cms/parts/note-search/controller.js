@@ -3,7 +3,11 @@ var util = require('utilities');
 
 
 exports.get = function( req ){
-	stk.log("inside get");
+
+	var something = execute("knowtly.hello", {"name": "BOOM"});
+
+	stk.log(something);
+
 	var actionUrl = execute('portal.componentUrl', {
 		component: 'main/0'
 	});
