@@ -3,38 +3,49 @@ var util = require('utilities');
 
 exports.get = function(req){
 	
+		
     var component = execute('portal.getComponent');
-	var currentContent = execute('portal.getContent');
-	var config = component.config;
+	var content = execute('content.getChildren', {
+	    key: '/shd/notes',
+	    start: 0,
+	    count: 1000,
+	    sort: '_modifiedTime ASC'
+	});
+	
+	//var config = component.config;
 	var urlParams = req.params;
-
+	
 	var query = "";
 	if( urlParams.q ){
+		stk.log(urlParams.q);
 		query = 'fulltext("data.title", "' + urlParams.q + '", "AND") OR fulltext("data.tags", "' + urlParams.q + '", "AND")';
 	}
-	
 	
 	var result = execute('content.query', {
 		start: 0,
 		count: 1000,
 		sort: 'createdTime DESC',
 		contentTypes: [
-			"com.enonic.xp.modules.knowlty.knowtly:note" 
+			"com.enonic.xp.modules.knowlty.knowtly-exp:note" 
 			],
 		query: query
 	});
 	
+	stk.log(result);
+	
+	if( result.contents.length == 0){
+		result = content;
+	}
 	
 	var notes = new Array();
 	
-	for( var i = 0; i < result.contents.length; i++ ){
-		var data = result.contents[i].data;
+	for( var i = 0; i < content.contents.length; i++ ){
+		var data = content.contents[i].data;
 		
-		var date = new Date( result.contents[i].createdTime );
+		var date = new Date( content.contents[i].createdTime );
         date = util.getFormattedDate(date);
         
         data.pubDate = date;
-		stk.log(data);				
 		notes.push(data);
 	}
 	

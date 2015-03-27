@@ -1,7 +1,9 @@
 var stk  = require('stk/stk');
 var util = require('utilities');
 
-
+/**************************
+*	GET
+****************************/
 exports.get = function( req ){
 
 	var something = execute("knowtly.hello", {"name": "BOOM"});
@@ -12,9 +14,34 @@ exports.get = function( req ){
 		component: 'main/0'
 	});
 	
+	// get tags
+	var aggregationResult = execute('content.query', {
+		start: 0,
+		count: 0,
+		sort: 'createdTime DESC',
+		contentTypes: ["com.enonic.xp.modules.knowlty.knowtly-exp:note"],
+		
+		aggregations: {
+	        tags: {
+	            terms: {
+	                field: "data.tags",
+	                order: "_count desc",
+	                size: 50
+	            }
+	        }
+        
+    }	});
+	
+	var tags = new Array();
+	for( var i = 0; i < aggregationResult.total; i++ ){
+		var localData = aggregationResult.aggregations.tags.buckets[i];
+		tags.push(localData);
+	}
+	
 	var param = {
-		pewpew: "pewpew",
-		actionUrl: actionUrl
+		actionUrl: actionUrl,
+		tags: tags,
+		tagCount: aggregationResult.total
 	};
 	var view = resolve('note-search.html');
 	
@@ -22,30 +49,32 @@ exports.get = function( req ){
 };
 
 
+
+/**************************
+*	POST 
+****************************/
 exports.post = function( req ){
 	
-	stk.log(req);
-	
 	var urlParams = req.formParams;
-	
-	stk.log(urlParams);
 	
 	var query = "";
 	
 	if( urlParams.q ){
-		stk.log("inside q");
+		stk.log("inside q: " + urlParams.q);
 		query = 'fulltext("data.title", "' + urlParams.q + '", "AND") OR fulltext("data.tags", "' + urlParams.q + '", "AND")';
 	}
-
+	
+	
 	var result = execute('content.query', {
 		start: 0,
-		count: 1000,
+		count: 100,
 		sort: 'createdTime DESC',
 		contentTypes: [
-			"com.enonic.xp.modules.knowlty.knowtly:note" 
+				"com.enonic.xp.modules.knowlty.knowtly-exp:note" 
 			],
 		query: query
 	});
+	
 	
 	var notes = new Array();
 	
