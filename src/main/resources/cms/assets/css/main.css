@@ -2,6 +2,18 @@
 	font-family: "menlo", monospace;
 }
 
+
+::-moz-selection {
+    background: hotpink;
+    text-shadow: none;
+}
+
+::selection {
+    background: hotpink;
+    text-shadow: none;
+}
+
+
 body {
 	background: #eee;
 	color: #111;
@@ -19,6 +31,9 @@ h1,h2,h3,h4,h5,h6,li,dt,dd,p,a,div {
 dl,dt,dd {
 	margin:0;
 }
+
+
+
 .audible {
 	position: absolute;
 	left: -100000px;
@@ -70,6 +85,15 @@ dl,dt,dd {
 	background: skyblue;
 	border-bottom: 1px dashed #eee;	
 }
+
+.tags a{
+	color:white;
+}
+
+.tags a:visited {
+	color: rgba(250,250,250,0.7);
+}
+
 .note dd:last-child {
 	border: 0 none;
 }

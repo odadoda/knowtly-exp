@@ -1,7 +1,8 @@
 <section>
-	<form method="get" data-th-attr="action=${actionUrl}" id="knowtly-search">
-		<input list="tag-list" type="search" name="q" placeholder="Tags or words" autocomplete="off" autofocus="true"/>
+	<form method="get" data-th-attr="action=${actionUrl}" id="knowtly-search" data-requestcount="0">
 		
+		<input list="tag-list" type="search" name="q" placeholder="Tags or words" autocomplete="off" autofocus="true"/>
+			
 		<datalist id="tag-list">
 			<option data-th-each="tag : ${tags}" data-th-attr="value=${tag.key + ' (' + tag.doc_count + ')'}" data-th-text="${tag.key + ' ' + tag.doc_count}" />
 		</datalist>

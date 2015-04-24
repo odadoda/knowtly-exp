@@ -8,8 +8,7 @@ exports.get = function( req ){
 
 	var something = execute("knowtly.hello", {"name": "BOOM"});
 
-	stk.log(something);
-
+	
 	var actionUrl = execute('portal.componentUrl', {
 		component: 'main/0'
 	});
@@ -56,12 +55,10 @@ exports.get = function( req ){
 exports.post = function( req ){
 	
 	var urlParams = req.formParams;
-	
 	var query = "";
 	
 	if( urlParams.q ){
-		stk.log("inside q: " + urlParams.q);
-		query = 'fulltext("data.title", "' + urlParams.q + '", "AND") OR fulltext("data.tags", "' + urlParams.q + '", "AND")';
+		query = 'fulltext("data.title", "' + urlParams.q + '", "AND") OR fulltext("data.tags", "' + urlParams.q + '", "OR")';
 	}
 	
 	
@@ -70,7 +67,7 @@ exports.post = function( req ){
 		count: 100,
 		sort: 'createdTime DESC',
 		contentTypes: [
-				"com.enonic.xp.modules.knowlty.knowtly-exp:note" 
+				module.name + ":note" 
 			],
 		query: query
 	});
@@ -89,8 +86,10 @@ exports.post = function( req ){
 	}
 	
 	var param = {
-		notes: notes
+		notes: notes,
+		requestid: urlParams.requestid
 	}	
+	
 	
 	var view = resolve('../note-list/note-list.html');
 	

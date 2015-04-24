@@ -3,9 +3,8 @@ var util = require('utilities');
 
 exports.get = function(req){
 	
-	//var module = execute('portal.getComponent');
     var content = execute('content.getChildren', {
-	    key: '/shd/notes',
+	    key: '/knowtly/notes',
 	    start: 0,
 	    count: 1000,
 	    sort: '_modifiedTime ASC'
@@ -27,6 +26,7 @@ exports.get = function(req){
 			],
 		query: query
 	});
+	
 	
 	if( result.contents.length > 0){
 		content = result;

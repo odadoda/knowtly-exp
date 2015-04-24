@@ -1,4 +1,4 @@
-<section class="js-note-list">
+<section class="js-note-list" data-th-attr="data-for-request=${requestid}"> 
 	<article data-th-each="note : ${notes}" class="note">
 		<header>
 			<h2 data-th-text="${note.title}">Note title</h2>
