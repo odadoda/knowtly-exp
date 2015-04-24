@@ -2,6 +2,7 @@
 <content-type>
 	<display-name>Note</display-name>
 	<super-type>base:structured</super-type>
+	
 	<form>
 		<input name="title" type="TextLine">
 			<label>Title</label>

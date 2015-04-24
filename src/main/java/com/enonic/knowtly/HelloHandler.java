@@ -26,5 +26,3 @@ public class HelloHandler implements CommandHandler {
     }
 }
 
-
-@public class SOmething implements 
