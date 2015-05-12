@@ -113,3 +113,46 @@ dl,dt,dd {
 	color: #eee;
 	padding: 10px;
 }
+
+
+#commandLineWrapper {
+	box-sizing: border-box;
+	width: 100%;
+	border: 0px none;
+	background: #333;
+	color: #eee;
+	padding: 10px;
+	overflow: hidden;
+	
+	
+}
+#commandLineWrapper input[type="search"]{
+	width: auto;
+	margin: 0;
+	background: transparent;
+	padding: 0;
+	float: left;
+	line-height: 1.8;
+	border: 0 none;
+	color: #eee;
+}	
+#knowtly-commandline input[type="submit"]{
+	display: none;
+}
+
+.validCommands {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	float: left;
+		
+}
+
+.validCommands li {
+	padding: 0 5px;
+	float: left;
+	background: lightgray;
+	color: #111;
+	margin: 0 5px 0 0;
+}
+

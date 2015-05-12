@@ -14,7 +14,7 @@ exports.get = function(req){
 	
 	var query = "";
 	if( urlParams.q ){
-		query = 'fulltext("data.title", "' + urlParams.q + '", "AND") OR fulltext("data.tags", "' + urlParams.q + '", "AND")';
+		query = 'fulltext("data.title", "' + urlParams.q + '", "AND") OR data.tags LIKE *'+urlParams.q+'*)';//fulltext("data.tags", "' + urlParams.q + '", "AND")';
 	}
 	
 	var result = execute('content.query', {
