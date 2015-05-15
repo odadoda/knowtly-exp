@@ -16,10 +16,9 @@
         commandlist: $('<ol class="' + pluginName + '_commandlist" ></ol>')
 	}; 
 	
+	//   commands and a name reffering to the function
 	var commands = {
-    	'new' : function(args){
-        	openEditorView(args);
-    	} 
+    	'new' : 'openEditorView'
 	}
 	
 	
@@ -35,7 +34,6 @@
 	
 	
 	Knowtly.prototype.init = function(){
-        console.log(this);  
         
         //disaable the submit button
         $(this.element).on('submit', function(e){
@@ -46,13 +44,10 @@
         // trigger on input
         $(this.element).find('input[type="search"]').on( 'input', $(this).find('input[type="search"]'), this.filterInput );	
         
+        // init commands
+      //  commands = $.extend(commands, {'new': function(args){openEditorView(args);}});
         
-        
-        
-        console.log('####');
-        console.log('#### Initialization done. You may precede with caution ####');
-        console.log('####');
-	}
+    }
 	
 	
 	$.fn[pluginName] = function( options ){
@@ -67,7 +62,7 @@
 	
 	// checks if input is a command or a search 
 	Knowtly.prototype.filterInput = function(event){
-    	if( typeof(commands[this.value]) == 'function' ){
+    	if( typeof(commands[this.value]) == 'string' ){
 			me.formatToCommandAppearance(this);
 		}else {
     		me.search(this);
@@ -85,7 +80,7 @@
 	
 	// executes the first "comand" in commandlist, passing on arguments
 	Knowtly.prototype.executeCommand = function(){
-    	me.commands[me.options.commandlist.children('li').eq(0).html()]();
+        me[me.commands[ me.options.commandlist.children('li').eq(0).html() ]]();
 	};
 	
 	
@@ -98,33 +93,14 @@
 		});*/		
 	}
 	
-	/*
-	opts.mainForm.submit(function(event){
-		event.preventDefault();
-		//window.URL = '#' + opts.mainCommandLine.val();
-	});
-		
-		
-	opts.mainCommandLine.on("input", function(){
-		if(typeof(opts.commands[opts.mainCommandLine.val()]) == 'function'){
-			api.changeToCommand()
-		}	
-	});	
+	Knowtly.prototype.openEditorView = function(){
+        console.log('opening view');	
+	}
 	
 	
-    changeToCommand: function(){
-		console.log(this.opts());		
-	},
-	
-	
-	search: function(){
-		form.attr('data-requestcount', parseInt(form.attr('data-requestcount')) + 1);
-		$.post( form.attr('action'), { 'q': form.children('[name="q"]').val(), 'requestid': form.attr('data-requestcount') }, function( data ){
-			if( parseInt($(data).attr('data-for-request')) >= form.attr('data-requestcount')){
-				$('.js-note-list').html( data );
-			}
-		});	
-	}*/
 
 }(jQuery, window, document));
+
+
+
 
