@@ -115,7 +115,7 @@ dl,dt,dd {
 }
 
 
-#commandLineWrapper {
+#knowtly-commandline {
 	box-sizing: border-box;
 	width: 100%;
 	border: 0px none;
@@ -126,7 +126,9 @@ dl,dt,dd {
 	
 	
 }
-#commandLineWrapper input[type="search"]{
+
+#knowtly-commandline input,
+#knowtly-commandline textarea {
 	width: auto;
 	margin: 0;
 	background: transparent;
@@ -135,9 +137,19 @@ dl,dt,dd {
 	line-height: 1.8;
 	border: 0 none;
 	color: #eee;
+	font-family: inherit;
+	font-size: inherit;
 }	
+
+
 #knowtly-commandline input[type="submit"]{
 	display: none;
+}
+
+#knowtly-commandline .editor input,
+#knowtly-commandline .editor textarea{
+    display:block;
+	width: 100%;
 }
 
 .validCommands {

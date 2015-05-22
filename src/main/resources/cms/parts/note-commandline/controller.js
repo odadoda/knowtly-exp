@@ -55,43 +55,47 @@ exports.get = function( req ){
 exports.post = function( req ){
 	
 	var urlParams = req.formParams;
-	var query = "";
 	
-	if( urlParams.q ){
-		query = 'fulltext("data.title", "' + urlParams.q + '", "AND") OR ngram("data.tags", "' + urlParams.q + '", "AND")'; //OR data.tags LIKE '+urlParams.q+')';//
+	if( urlParams.action == 'create' ){
+        util.log('creates');	
+	}else{
+    	var query = "";
+    	
+    	if( urlParams.q ){
+    		query = 'fulltext("data.title", "' + urlParams.q + '", "AND") OR ngram("data.tags", "' + urlParams.q + '", "AND")'; //OR data.tags LIKE '+urlParams.q+')';//
+    	}
+    	
+    	var result = execute('content.query', {
+    		start: 0,
+    		count: 100,
+    		sort: 'createdTime DESC',
+    		contentTypes: [
+    				module.name + ":note" 
+    			],
+    		query: query
+    	});
+    	
+    	
+    	var notes = new Array();
+    	
+    	for( var i = 0; i < result.contents.length; i++ ){
+    		var data = result.contents[i].data;
+    		
+    		var date = new Date( result.contents[i].createdTime );
+            date = util.getFormattedDate(date);
+            
+            data.pubDate = date;
+    		notes.push(data);
+    	}
+    	
+    	var param = {
+    		notes: notes,
+    		requestid: urlParams.requestid
+    	}	
+    	
+    	
+    	var view = resolve('../note-list/note-list.html');
 	}
-	
-	var result = execute('content.query', {
-		start: 0,
-		count: 100,
-		sort: 'createdTime DESC',
-		contentTypes: [
-				module.name + ":note" 
-			],
-		query: query
-	});
-	
-	
-	var notes = new Array();
-	
-	for( var i = 0; i < result.contents.length; i++ ){
-		var data = result.contents[i].data;
-		
-		var date = new Date( result.contents[i].createdTime );
-        date = util.getFormattedDate(date);
-        
-        data.pubDate = date;
-		notes.push(data);
-	}
-	
-	var param = {
-		notes: notes,
-		requestid: urlParams.requestid
-	}	
-	
-	
-	var view = resolve('../note-list/note-list.html');
-	
 	return stk.view.render(view, param);
 	
 };
