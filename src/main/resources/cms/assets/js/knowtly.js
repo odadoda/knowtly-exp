@@ -16,11 +16,7 @@
         commandlist: $('<ol class="' + pluginName + '_commandlist" ></ol>')
 	}; 
 	
-	//   commands and a name reffering to the function
-	var commands = {
-    	'new' : 'openEditorView'
-	}
-	
+	var commands = {};
 	
 	// construcor
 	function Knowtly( element, options ){
@@ -30,8 +26,8 @@
         this._name = pluginName;
         this.commands = commands;
         this.init();   	
+        console.info('constructor done');
 	}
-	
 	
 	Knowtly.prototype.init = function(){
         
@@ -45,11 +41,15 @@
         $(this.element).find('input[type="search"]').on( 'input', $(this).find('input[type="search"]'), this.filterInput );	
         
         // init commands
-      //  commands = $.extend(commands, {'new': function(args){openEditorView(args);}});
-        
+        commands = $.extend(commands, $.fn[pluginName].commands);
+        console.log(commands);
+        console.log('init done');
     }
 	
 	
+	/*
+    *   Define the plugin 
+	*/
 	$.fn[pluginName] = function( options ){
     	return this.each(function(){
         	if( !$.data(this, 'plugin_' + pluginName) ){
@@ -62,7 +62,7 @@
 	
 	// checks if input is a command or a search 
 	Knowtly.prototype.filterInput = function(event){
-    	if( typeof(commands[this.value]) == 'string' ){
+    	if( typeof(commands[this.value]) == 'function' ){
 			me.formatToCommandAppearance(this);
 		}else {
     		me.search(this);
@@ -71,6 +71,7 @@
     
     
     // changes input text to a listitem in "valid commands"
+    
 	Knowtly.prototype.formatToCommandAppearance = function(inputElement){
         var commandItem = $('<li>'+inputElement.value+'</li>');
         me.options.commandlist.append(commandItem);
@@ -80,7 +81,8 @@
 	
 	// executes the first "comand" in commandlist, passing on arguments
 	Knowtly.prototype.executeCommand = function(){
-        me[me.commands[ me.options.commandlist.children('li').eq(0).html() ]]();
+    	console.log(me.commands[me.options.commandlist.children('li').eq(0).html()]);
+        me.commands[ me.options.commandlist.children('li').eq(0).html() ]();
 	};
 	
 	
@@ -97,9 +99,39 @@
         console.log('opening view');	
 	}
 	
+	/* Add defualt commands*/
+	
+	
+	$.fn[pluginName].commands = {'fest': function(args){console.log('pewpew ' + args)}};
+	
 	
 
 }(jQuery, window, document));
+
+
+
+
+
+/*
+*   Add commands
+*
+*/
+
+(function($){
+    /*  command: NEW   */    
+    var commmand_new = {
+        'new': function(args){
+            console.log('pewpew opening view');    
+        }
+    };
+    
+    $.extend($.fn.knowtly.commands, commmand_new);
+    
+    
+    
+})(jQuery);
+
+
 
 
 
