@@ -1,10 +1,10 @@
-<section>
+<section class="knowtly-wrap" data-th-attr="actionUrl=${actionUrl}">
 	<form method="get" data-th-attr="action=${actionUrl}" id="knowtly-commandline" data-requestcount="0">
 		
 		<div id="commandLineWrapper" class="commandLineWrapper">
 			<ol class="validCommands">
 			</ol>
-			<input list="tag-list" type="search" name="q" placeholder="Tags or words" autocomplete="off" autofocus="true"/>
+			<input list="tag-list" type="search" name="q" placeholder="Query or commando [new]" autocomplete="off" autofocus="true"/>
 		</div>
 		<datalist id="tag-list">
 			<option data-th-each="tag : ${tags}" data-th-attr="value=${tag.key + ' (' + tag.doc_count + ')'}" data-th-text="${tag.key + ' ' + tag.doc_count}" />
@@ -14,6 +14,6 @@
 			<p>sidjf</p>
 		</div>
 		-->
-		<input type="submit" value="search" />
+<!-- 		<input type="submit" value="search" /> -->
 	</form>
 </section>

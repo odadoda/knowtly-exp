@@ -45,7 +45,6 @@ exports.get = function(req){
 	}
 	
 
-	
 	var params = {
 		notes: notes
 	};

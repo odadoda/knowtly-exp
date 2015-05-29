@@ -8,10 +8,9 @@
 	var pluginName = "knowtly";
 	var me = {};
 	
-	console.log(this);
 	var defaults = {
-    
     	mainForm: this,
+//    	actionUrl: 
         commandlist: $('<ol class="' + pluginName + '_commandlist" ></ol>')
 	}; 
 	
@@ -21,14 +20,16 @@
 	// construcor
 	function Knowtly( element, options ){
         this.element = element;
-        this.options = $.extend( {}, defaults, options ); 
+        this.options = $.extend( {actionUrl: $(element).attr('action')}, defaults, options ); 
         this.api = {
             'element': element,
-            'options': this.options};
+            'options': this.options,
+            'get':{
+                'view': this.getView
+            }};
         this._defaults = defaults;
         this._name = pluginName;
         this.commands = $.fn[pluginName].commands;
-        console.info('constructor done');
         
         this.init();   	
 	}
@@ -106,6 +107,20 @@
 		});*/		
 	}
 	
+	Knowtly.prototype.getView = function(view, contentType){
+    	var result = $.ajax({
+        	url: me.options.actionUrl,
+        	type: 'GET',
+        	data:{view: view, 
+        	contentType: contentType},
+            async: false
+        });
+    	return result.responseText;    	
+	}
+	
+	
+	
+	
 	/*  Global stuff */
 	$.fn[pluginName].commands = {};
     $.fn[pluginName].api = {};
@@ -121,32 +136,20 @@
 *   Add commands
 *
 */
-
 (function($){
     /*  command: NEW   */    
     var commands = {
         'new': function(args){
-            
-            var mainForm = $.fn.knowtly.api.element;
-            
-            console.log(mainForm);
-            
-            var wrapper = $('<section class="editor"></section>');
-            var inputTitle = $('<input type="text" name="title" placeholder="Title" autofocus="true"/>');
-            var inputBody  = $('<textarea name="body" placeholder="Body"></textarea>');
-            
-            wrapper.append(inputTitle);
-            wrapper.append(inputBody);
-            
-            $(mainForm).append(wrapper);
-            
-    //        $.fn.knowtly.mainForm.appendChild(inputTitle);
-    //        $.fn.knowtly.mainForm.appendChild(inputBody); 
+            var newInputForm = $.fn.knowtly.api.get.view('new','note');
+            var mainForm = $($.fn.knowtly.api.element).parent();
+            $(mainForm).empty();
+            $(mainForm).append(newInputForm);
             return this;           
         }
     };
     
     $.extend($.fn.knowtly.commands, commands);
+   
     
     
 })(jQuery);

@@ -115,7 +115,7 @@ dl,dt,dd {
 }
 
 
-#knowtly-commandline {
+.knowtly-wrap {
 	box-sizing: border-box;
 	width: 100%;
 	border: 0px none;
@@ -127,8 +127,8 @@ dl,dt,dd {
 	
 }
 
-#knowtly-commandline input,
-#knowtly-commandline textarea {
+.knowtly-wrap input,
+.knowtly-wrap textarea {
 	width: auto;
 	margin: 0;
 	background: transparent;
@@ -139,17 +139,41 @@ dl,dt,dd {
 	color: #eee;
 	font-family: inherit;
 	font-size: inherit;
+    width: 100%;
 }	
 
 
-#knowtly-commandline input[type="submit"]{
-	display: none;
+
+
+.knowtly-wrap input[type="submit"]{
+	//display: none;
+    background-color: #89af42;
+    width: 100%;
 }
 
-#knowtly-commandline .editor input,
-#knowtly-commandline .editor textarea{
+.knowtly-wrap .editor input,
+.knowtly-wrap .editor textarea{
     display:block;
 	width: 100%;
+}
+
+
+.knowtly-wrap form input:nth-child(2),
+.knowtly-wrap form textarea:nth-child(2){
+    color: yellow;
+}
+.knowtly-wrap form input:nth-child(3),
+.knowtly-wrap form textarea:nth-child(3){
+
+    color: skyblue;
+}
+.knowtly-wrap form input:nth-child(4),
+.knowtly-wrap form textarea:nth-child(4){
+    color: orange;
+}
+.knowtly-wrap form input:nth-child(5),
+.knowtly-wrap form textarea:nth-child(5){
+        color: fuchsia;
 }
 
 .validCommands {
