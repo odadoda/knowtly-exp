@@ -26,7 +26,11 @@
             'options': this.options,
             'get':{
                 'view': this.getView
-            }};
+            },
+            'postRender': {
+                'fireLibraries': this.fireLibraries
+            }
+            };
         this._defaults = defaults;
         this._name = pluginName;
         this.commands = $.fn[pluginName].commands;
@@ -49,9 +53,7 @@
         // trigger on input
         $(this.element).find('input[type="search"]').on( 'input', $(this).find('input[type="search"]'), this.filterInput );	
         
-        console.info(this.api);
         $.fn[pluginName].api = this.api;
-        console.log($.fn[pluginName].api);
     }
 	
 	
@@ -105,7 +107,7 @@
 				$('.js-note-list').html( data );
 			}
 		});*/		
-	}
+	};
 	
 	Knowtly.prototype.getView = function(view, contentType){
     	var result = $.ajax({
@@ -116,7 +118,12 @@
             async: false
         });
     	return result.responseText;    	
-	}
+	};
+	
+	Knowtly.prototype.fireLibraries = function(){
+        console.log($('.js-tagganator-me'));
+        $('.js-tagganator-me').tagator();	
+	};
 	
 	
 	
@@ -144,6 +151,9 @@
             var mainForm = $($.fn.knowtly.api.element).parent();
             $(mainForm).empty();
             $(mainForm).append(newInputForm);
+            
+            $.fn.knowtly.api.postRender.fireLibraries();
+            
             return this;           
         }
     };

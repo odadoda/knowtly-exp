@@ -15,7 +15,7 @@ exports.get = function( req ){
 	//var something = execute("knowtly.hello", {"name": "BOOM"});
     var view, param;
     
-    if(urlParams.view == 'new' && urlParams.contentType != ''){
+    if( urlParams.view == 'new' && urlParams.contentType != '' ){
         
         view = resolve('new-' + urlParams.contentType + '.html');    
         param = {actionUrl: actionUrl};
@@ -79,7 +79,7 @@ exports.post = function( req ){
             name: urlParams.title,
             displayName: urlParams.title,
             contentType: module.name + ':note',
-            parentPath: '/knowtly/notes',
+            parentPath: '/knowknow/notes',
             breanch: 'master',
             data: {
                 title: urlParams.title,
