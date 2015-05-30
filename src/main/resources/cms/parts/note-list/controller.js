@@ -10,6 +10,7 @@ exports.get = function(req){
 	    sort: '_modifiedTime ASC'
 	});
 	
+	
 	var urlParams = req.params;
 	
 	var query = "";
@@ -31,6 +32,9 @@ exports.get = function(req){
 	if( result.contents.length > 0){
 		content = result;
 	}
+	
+	stk.log(content);
+	
 	
 	var notes = new Array();
 	

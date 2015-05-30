@@ -101,18 +101,6 @@ dl,dt,dd {
 	padding: 10px;	
 }
 
-#knowtly-search input[type=submit]{
-	display: none;
-}
-
-#knowtly-search input[type="search"] {
-	box-sizing: border-box;
-	width: 100%;
-	border: 0px none;
-	background: #333;
-	color: #eee;
-	padding: 10px;
-}
 
 
 .knowtly-wrap {
@@ -133,7 +121,6 @@ dl,dt,dd {
 	margin: 0;
 	background: transparent;
 	padding: 0;
-	float: left;
 	line-height: 1.8;
 	border: 0 none;
 	color: #eee;
@@ -141,6 +128,20 @@ dl,dt,dd {
 	font-size: inherit;
     width: 100%;
 }	
+
+#knowtly-search input[type=submit]{
+	display: none;
+}
+
+.knowtly-wrap input[type="search"] {
+	width: 80%;
+}
+
+
+.knowlty-wrap input:not(.tags){
+    float: left;
+	
+}
 
 
 
@@ -151,28 +152,20 @@ dl,dt,dd {
     width: 100%;
 }
 
-.knowtly-wrap .editor input,
-.knowtly-wrap .editor textarea{
-    display:block;
-	width: 100%;
-}
 
 
-.knowtly-wrap form input:nth-child(2),
-.knowtly-wrap form textarea:nth-child(2){
+.giveDifferentColors:nth-child(2){
     color: yellow;
 }
-.knowtly-wrap form input:nth-child(3),
-.knowtly-wrap form textarea:nth-child(3){
+.giveDifferentColors:nth-child(3){
 
     color: skyblue;
 }
-.knowtly-wrap form input:nth-child(4),
-.knowtly-wrap form textarea:nth-child(4){
+
+.giveDifferentColors:nth-child(4){
     color: orange;
 }
-.knowtly-wrap form input:nth-child(5),
-.knowtly-wrap form textarea:nth-child(5){
+.giveDifferentColors:nth-child(5){
         color: fuchsia;
 }
 
@@ -219,11 +212,11 @@ dl,dt,dd {
 
 /* Main box */
 .tagator {
-	border: 1px solid #abadb3;
+	/*border: 1px solid #abadb3;
 	border-radius: 3px;
 	box-sizing: border-box;
 	background-color: #fff;
-	display: inline-block;
+	*/display: inline-block;
 	text-decoration: none;
 }
 .tagator.options-visible {
@@ -242,9 +235,9 @@ dl,dt,dd {
 	background-color: #39f;
 	border-radius: 2px;
 	color: #fff;
-	padding: 2px 20px 2px 4px;
+	padding: 0 20px 0px 4px;
 	font-size: 13px;
-	margin: 2px;
+	margin: 0 2px;
 	position: relative;
 	vertical-align: top;
 }
@@ -276,14 +269,16 @@ dl,dt,dd {
 .tagator_textlength {
 	border: 0;
 	display: inline-block;
-	margin: 0;
+	margin: 2;
 	background-color: transparent;
 	font-size: 13px;
 	outline: none;
 	padding: 4px 0 0 5px;
 }
-.tagator_input {
+
+.knowtly-wrap .tagator_input {
 	/*padding: 0px 0px;*/
+	margin:2px;
 }
 
 /* options holder */

@@ -75,6 +75,11 @@ exports.post = function( req ){
     
         stk.log('creates');	
         
+/*
+        var formattedTags = new Array();
+        for(var i = 0; i < urlParams.tags.split(",").length)
+        
+*/
         var result = execute('content.create', {
             name: urlParams.title,
             displayName: urlParams.title,
@@ -83,7 +88,8 @@ exports.post = function( req ){
             breanch: 'master',
             data: {
                 title: urlParams.title,
-                text: '<div>' + urlParams.preface + '</div>'
+                text: '<div>' + urlParams.preface + '</div>',
+                tags: urlParams.tags.split(",")
             }
         });
         
