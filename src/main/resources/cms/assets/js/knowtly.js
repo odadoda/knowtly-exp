@@ -101,12 +101,14 @@
 	
 	
 	Knowtly.prototype.search = function( inputElement ){
-        /*form.attr('data-requestcount', parseInt(form.attr('data-requestcount')) + 1);
-		$.post( form.attr('action'), { 'q': form.children('[name="q"]').val(), 'requestid': form.attr('data-requestcount') }, function( data ){
+    	var form = $(me.element);
+    	console.log(form);
+        form.attr('data-requestcount', parseInt(form.attr('data-requestcount')) + 1);
+		$.post( form.attr('action'), { 'q': form.find('[name="q"]').val(), 'requestid': form.attr('data-requestcount') }, function( data ){
 			if( parseInt($(data).attr('data-for-request')) >= form.attr('data-requestcount')){
 				$('.js-note-list').html( data );
 			}
-		});*/		
+		});	
 	};
 	
 	Knowtly.prototype.getView = function(view, contentType){

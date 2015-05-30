@@ -33,8 +33,6 @@ exports.get = function(req){
 		content = result;
 	}
 	
-	stk.log(content);
-	
 	
 	var notes = new Array();
 	
