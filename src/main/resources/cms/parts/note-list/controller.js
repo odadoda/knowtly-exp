@@ -32,7 +32,7 @@ exports.get = function(req){
 	if( result.contents.length > 0){
 		content = result;
 	}
-	
+	    
 	
 	var notes = new Array();
 	

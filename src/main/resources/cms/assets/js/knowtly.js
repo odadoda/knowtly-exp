@@ -43,7 +43,6 @@
 	*   initialization
 	*/
 	Knowtly.prototype.init = function(){
-        console.info('init starting');    
         //disaable the submit button
         $(this.element).on('submit', function(e){
             e.preventDefault();
@@ -102,8 +101,7 @@
 	
 	Knowtly.prototype.search = function( inputElement ){
     	var form = $(me.element);
-    	console.log(form);
-        form.attr('data-requestcount', parseInt(form.attr('data-requestcount')) + 1);
+    	form.attr('data-requestcount', parseInt(form.attr('data-requestcount')) + 1);
 		$.post( form.attr('action'), { 'q': form.find('[name="q"]').val(), 'requestid': form.attr('data-requestcount') }, function( data ){
 			if( parseInt($(data).attr('data-for-request')) >= form.attr('data-requestcount')){
 				$('.js-note-list').html( data );
@@ -152,6 +150,8 @@
             var mainForm = $($.fn.knowtly.api.element).parent();
             $(mainForm).empty();
             $(mainForm).append(newInputForm);
+            console.log($(mainForm).find('input:not([type="hidden"])').eq(0));
+            $(mainForm).find('input:not([type="hidden"])').eq(0).focus();
             
             $.fn.knowtly.api.postRender.fireLibraries();
             

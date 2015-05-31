@@ -65,21 +65,11 @@ exports.get = function( req ){
 *	POST 
 ****************************/
 exports.post = function( req ){
-	
-	stk.log('----- in POST -----');
-	stk.log(req);
-	
+		
 	var urlParams = req.formParams;
 	
 	if( urlParams.create == 'note' ){
     
-        stk.log('creates');	
-        
-/*
-        var formattedTags = new Array();
-        for(var i = 0; i < urlParams.tags.split(",").length)
-        
-*/
         var result = execute('content.create', {
             name: urlParams.title,
             displayName: urlParams.title,
