@@ -74,7 +74,7 @@ exports.post = function( req ){
             name: urlParams.title,
             displayName: urlParams.title,
             contentType: module.name + ':note',
-            parentPath: '/knowknow/notes',
+            parentPath: '/knowtly/notes',
             breanch: 'master',
             data: {
                 title: urlParams.title,
@@ -102,9 +102,7 @@ exports.post = function( req ){
     		start: 0,
     		count: 100,
     		sort: 'createdTime DESC',
-    		contentTypes: [
-    				module.name + ":note" 
-    			],
+    		contentTypes: [module.name + ":note"],
     		query: query
     	});
     	
