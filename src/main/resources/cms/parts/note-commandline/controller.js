@@ -67,6 +67,7 @@ exports.get = function( req ){
 exports.post = function( req ){
 		
 	var urlParams = req.formParams;
+	var site = execute('portal.getSite');
 	
 	if( urlParams.create == 'note' ){
     
@@ -74,7 +75,7 @@ exports.post = function( req ){
             name: urlParams.title,
             displayName: urlParams.title,
             contentType: module.name + ':note',
-            parentPath: '/knowtly/notes',
+            parentPath: site._path + '/notes',
             breanch: 'master',
             data: {
                 title: urlParams.title,
