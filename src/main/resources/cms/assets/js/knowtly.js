@@ -122,10 +122,8 @@
 	};
 	
 	Knowtly.prototype.fireLibraries = function(){
-    	console.log('tagatoring');
-        $('.js-tagganator-me').tagator();	
-        console.log($('.js-tagganator-me'));
-	};
+    	$('.js-tagganator-me').tagator();	
+    };
 	
 	
 	
