@@ -121,7 +121,9 @@
 	};
 	
 	Knowtly.prototype.fireLibraries = function(){
-        $('.js-tagganator-me').tagator();	
+        $('.js-tagganator-me').tagator();
+//         this.tinymce.init({'selector': '.js-tinymce-me'});	
+        $('textarea.js-tinymce-me').tinymce({});
 	};
 	
 	
