@@ -1,7 +1,16 @@
 <form data-th-attr="action=${actionUrl}" method="POST">
     <input name="create" type="hidden" value="note" />
-    <input name="title" type="text" placeholder="Title" autofocus="true"/>
-    <input name="tags" type="text" placeholder="Tags" class="js-tagganator-me" />
-    <textarea name="preface" placeholder="preface"></textarea>
-    <input type="submit" value="save" />
+    <div class="input_field">
+        <label for="create">Title</label>
+        <input name="title" type="text" placeholder="Title" autofocus="true"/>
+    </div>
+    <div class="input_field">
+        <label for="create">Tags</label>
+            <input name="tags" type="text" placeholder="Tags" class="js-tagganator-me" />
+    </div>
+    <div class="input_field">
+        <label for="create">Body</label>
+        <textarea name="preface" placeholder="preface"></textarea>
+    </div>
+        <input type="submit" value="save" />
 </form>             
