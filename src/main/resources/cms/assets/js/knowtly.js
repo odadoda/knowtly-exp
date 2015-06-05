@@ -10,7 +10,6 @@
 	
 	var defaults = {
     	mainForm: this,
-//    	actionUrl: 
         commandlist: $('<ol class="' + pluginName + '_commandlist" ></ol>')
 	}; 
 	
@@ -125,6 +124,7 @@
 	Knowtly.prototype.fireLibraries = function(){
     	console.log('tagatoring');
         $('.js-tagganator-me').tagator();	
+        console.log($('.js-tagganator-me'));
 	};
 	
 	
