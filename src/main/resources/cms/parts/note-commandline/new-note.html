@@ -1,0 +1,7 @@
+<form data-th-attr="action=${actionUrl}" method="post">
+    <input type="hidden" name="create" value="note" autofocus="autofocus"/>
+    <input type="text" name="title" placeholder="Title" />
+    <input type="text" name="tags" placeholder="Tags" class="js-tagganator-me tags" />
+    <textarea name="preface" placeholder="Body" class="js-tinymce-me"/>
+    <input type="submit"  value="save" />
+</form>
