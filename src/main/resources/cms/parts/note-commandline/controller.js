@@ -18,7 +18,14 @@ exports.get = function( req ){
     if( urlParams.view == 'new' && urlParams.contentType != '' ){
         
         view = resolve('new-' + urlParams.contentType + '.html');    
-        param = {actionUrl: actionUrl};
+        param = {
+            actionUrl: actionUrl,
+            tinymceurl: execute('portal.assetUrl', {
+                          path: 'js/tinymce/tinymce.min.js',
+                          theme : "advanced"
+
+                        })
+        };
         
 	}else {
     	
