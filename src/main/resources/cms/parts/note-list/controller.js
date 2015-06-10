@@ -1,5 +1,6 @@
 var stk = require('stk/stk');
 var util = require('utilities');
+var markdown = require('markdown');
 
 exports.get = function(req){
 	
@@ -35,18 +36,18 @@ exports.get = function(req){
 	    
 	
 	var notes = new Array();
-	
+	stk.log(content);
 	for( var i = 0; i < content.contents.length; i++ ){
 		var data = content.contents[i].data;
 		
 		var date = new Date( content.contents[i].createdTime );
         date = util.getFormattedDate(date);
-        
+        data.markdownParsedBody = markdown.markdown.parse(data.text);
         data.pubDate = date;
 		notes.push(data);
 	}
 	
-
+    stk.log(notes);
 	var params = {
 		notes: notes
 	};

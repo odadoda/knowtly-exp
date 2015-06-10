@@ -52,6 +52,11 @@
         $(this.element).find('input[type="search"]').on( 'input', $(this).find('input[type="search"]'), this.filterInput );	
         
         $.fn[pluginName].api = this.api;
+        
+        // add stuff to 
+        $(this.element).find('.body-text').on('focusin', function(){
+            console.log('focus');
+        });
     }
 	
 	

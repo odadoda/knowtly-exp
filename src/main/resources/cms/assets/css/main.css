@@ -28,8 +28,30 @@ h1,h2,h3,h4,h5,h6,li,dt,dd,p,a,div {
 	line-height: 1.8;
 }
 
+.body-text h1:before,
+.body-text h2:before {
+    content: "#####################################\A ##";
+}
+
+.body-text h2:after,
+.body-text h1:after {
+    content: "\A #####################################";
+}
+
+.body-text h3:before {
+    content: "##";
+    margin: 0 5px 0 0;
+}
+
 dl,dt,dd {
 	margin:0;
+}
+
+code {
+    background: #333 none repeat scroll 0 0;
+    color: #eee;
+    display: block;
+    padding: 0 5px;
 }
 
 
@@ -129,6 +151,9 @@ dl,dt,dd {
     width: 100%;
 }	
 
+.knowtly-wrap textarea {
+    height: 250px;
+}
 #knowtly-search input[type=submit]{
 	display: none;
 }
