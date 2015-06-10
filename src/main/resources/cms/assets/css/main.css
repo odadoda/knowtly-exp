@@ -28,19 +28,21 @@ h1,h2,h3,h4,h5,h6,li,dt,dd,p,a,div {
 	line-height: 1.8;
 }
 
-.body-text h1:before,
-.body-text h2:before {
-    content: "#####################################\A ##";
+
+.body-text h2 {
+    padding: 0 5px;
+    background: #aaa;
+    font-weight: bold;
 }
 
 .body-text h2:after,
 .body-text h1:after {
-    content: "\A #####################################";
 }
 
-.body-text h3:before {
-    content: "##";
-    margin: 0 5px 0 0;
+.body-text h3 {
+    padding: 0 5px;
+    background: #aaa;
+    
 }
 
 dl,dt,dd {
