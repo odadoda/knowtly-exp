@@ -1,7 +1,9 @@
 exports.markdown = {
     parse: function (s) {
+        
+        var r = (typeof(s) == 'undefined')? '':s;
+        var ii, pre1 = [], pre2 = [];        
         var blockLevelElements = ['div', 'p', 'img', 'h1', 'h2', 'h3','h4','h5','h6'];
-        var r = s, ii, pre1 = [], pre2 = [];
     
         // detect newline format
         var newline = r.indexOf('\r\n') != -1 ? '\r\n' : r.indexOf('\n') != -1 ? '\n' : ''
@@ -20,7 +22,7 @@ exports.markdown = {
         // bold, italics, and code formatting
         r = r.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         r = r.replace(new RegExp('//(((?!https?://).)*?)//', 'g'), '<em>$1</em>');
-        r = r.replace(/``(.*?)``/g, '<code>$1</code>');
+        r = r.replace(/``([^*]*?)``/gm, '<code>$1</code>');
         
         // unordered lists
         r = r.replace(/^\*\*\*\* (.*)/gm, '<ul><ul><ul><ul><li>$1</li></ul></ul></ul></ul>');

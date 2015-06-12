@@ -34,9 +34,8 @@ exports.get = function(req){
 		content = result;
 	}
 	    
-	
 	var notes = new Array();
-	stk.log(content);
+	
 	for( var i = 0; i < content.contents.length; i++ ){
 		var data = content.contents[i].data;
 		

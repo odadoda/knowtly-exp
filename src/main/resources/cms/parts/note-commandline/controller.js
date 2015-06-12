@@ -1,5 +1,6 @@
 var stk  = require('stk/stk');
 var util = require('utilities');
+var markdown = require('markdown');
 
 /**************************
 *	GET
@@ -15,16 +16,13 @@ exports.get = function( req ){
 	//var something = execute("knowtly.hello", {"name": "BOOM"});
     var view, param;
     
+    // show new editor
     if( urlParams.view == 'new' && urlParams.contentType != '' ){
         
         view = resolve('new-' + urlParams.contentType + '.html');    
         param = {
-            actionUrl: actionUrl,
-            tinymceurl: execute('portal.assetUrl', {
-                          path: 'js/tinymce/tinymce.min.js',
-                          theme : "advanced"
-
-                        })
+            actionUrl: actionUrl
+            
         };
         
 	}else {
@@ -122,7 +120,7 @@ exports.post = function( req ){
     		
     		var date = new Date( result.contents[i].createdTime );
             date = util.getFormattedDate(date);
-            
+            data.markdownParsedBody = markdown.markdown.parse(data.text);
             data.pubDate = date;
     		notes.push(data);
     	}

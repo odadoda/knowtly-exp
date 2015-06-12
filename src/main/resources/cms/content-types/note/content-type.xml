@@ -13,7 +13,7 @@
 			<label>Tags</label>
 			<occurrences minimum="0" maximum="0" />
 		</input>
-		<input name="text" type="TinyMCE">
+		<input name="text" type="TextArea">
 			<label>Text</label>
 			<occurrences minimum="0" maximum="1" />
 		</input> 

@@ -36,19 +36,16 @@ h1,h2,h3,h4,h5,h6,li,dt,dd,p,a,div {
 
 
 .body-text h2 {
-    padding: 0 5px;
-    background: #aaa;
     font-weight: bold;
 }
 
-.body-text h2:after,
-.body-text h1:after {
+.body-text h2:before,
+.body-text h1:before {
+    content: "### ";
+    
 }
 
 .body-text h3 {
-    padding: 0 5px;
-    background: #aaa;
-    
 }
 
 dl,dt,dd {
@@ -60,6 +57,7 @@ code {
     color: #eee;
     display: block;
     padding: 0 5px;
+    white-space: pre;
 }
 
 
