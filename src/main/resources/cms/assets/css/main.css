@@ -21,6 +21,12 @@ body {
 	margin: 0;
 }
 
+body.style-2 {
+    background: #eb29c4;
+    color: #6df20e;
+    
+}
+
 h1,h2,h3,h4,h5,h6,li,dt,dd,p,a,div {
 	font-size: 12px;
 	font-weight: normal;
@@ -110,8 +116,17 @@ code {
 	border-bottom: 1px dashed #eee;	
 }
 
+.style-2 .note dd {
+    background: yellow;
+    
+}
+
 .tags a{
 	color:white;
+}
+
+.style-2 .tags a {
+    color: orange;
 }
 
 .tags a:visited {
@@ -135,9 +150,12 @@ code {
 	color: #eee;
 	padding: 10px;
 	overflow: hidden;
-	
-	
 }
+
+.style-2 .knowtly-wrap {
+    background: rgba(180, 200, 0, 1);
+}
+
 
 .knowtly-wrap input,
 .knowtly-wrap textarea {
