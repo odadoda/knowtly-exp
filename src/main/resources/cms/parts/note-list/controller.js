@@ -11,6 +11,10 @@ exports.get = function(req){
 	    sort: '_modifiedTime ASC'
 	});
 	
+	var stuff = execute('portal.getComponent');
+	
+	stk.log(stuff);
+	stk.log('pewpewpew');
 	
 	var urlParams = req.params;
 	
