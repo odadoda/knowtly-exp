@@ -152,7 +152,6 @@
             var mainForm = $($.fn.knowtly.api.element).parent();
             $(mainForm).empty();
             $(mainForm).append(newInputForm);
-            console.log($(mainForm).find('input:not([type="hidden"])').eq(0));
             $(mainForm).find('input:not([type="hidden"])').eq(0).focus();
             
             $.fn.knowtly.api.postRender.fireLibraries();

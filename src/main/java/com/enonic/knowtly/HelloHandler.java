@@ -19,13 +19,13 @@ public class HelloHandler implements CommandHandler {
         return "knowtly.hello";
     }
 
-
+/*
 
     public String getUser(){
         User a = new User();
         return a.getLogin();
     }
-
+*/
     @Override
     public Object execute(CommandRequest req) {
         String name = req.param("name").required().value(String.class);

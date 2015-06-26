@@ -13,11 +13,13 @@ exports.get = function(req){
 	
 	var stuff = execute('portal.getComponent');
 	
-	stk.log(stuff);
-	stk.log('pewpewpew');
-	
 	var urlParams = req.params;
 	
+	var serviceurl = stk.serviceUrl('authenticated', {});
+		
+	
+	stk.log(serviceurl);	
+		
 	var query = "";
 	if( urlParams.q ){
 		query = 'fulltext("data.title", "' + urlParams.q + '", "AND") OR data.tags LIKE *'+urlParams.q+'*)';//fulltext("data.tags", "' + urlParams.q + '", "AND")';
@@ -50,8 +52,7 @@ exports.get = function(req){
 		notes.push(data);
 	}
 	
-    stk.log(notes);
-	var params = {
+    var params = {
 		notes: notes
 	};
 	

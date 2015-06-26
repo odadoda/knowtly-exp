@@ -6,10 +6,11 @@ exports.get = function(req) {
 	
 	var content = execute('portal.getContent');	
 	var site = execute('portal.getSite');
-	
+	//stk.log(site);
 	var randomnumber = 1;// (Math.floor(Math.random()*11) % 4 );
 		
 	var params = { 
+    	colorScheme: site.data.moduleConfig.config.colorscheme,
 		mainRegion: content.page.regions['main'],
 		content: content,
 		message: "Hello pewpew",
