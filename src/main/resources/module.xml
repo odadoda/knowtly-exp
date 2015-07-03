@@ -30,5 +30,9 @@
                 <selector-type>DROPDOWN</selector-type>
             </config>
         </input>
+        <input type="text" name="searchbloxpath">
+            <label>Searchblox path</label>
+            <occurrences minimum="0" maximum="1" />
+        </input>
 	</config>
 </module>
