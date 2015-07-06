@@ -45,7 +45,7 @@
         //disaable the submit button
         $(this.element).on('submit', function(e){
             e.preventDefault();
-            me.executeCommand();
+            me.executeCommand($(me.element).find('input[name="q"]').val());
         });
                  
         // trigger on input
@@ -97,12 +97,15 @@
 	
 	
 	// executes the first "comand" in commandlist, passing on arguments
-	Knowtly.prototype.executeCommand = function(){
-    	me.commands[ me.options.commandlist.children('li').eq(0).html() ]();
+	Knowtly.prototype.executeCommand = function(args){
+    	me.commands[ me.options.commandlist.children('li').eq(0).html() ](args);
     	
 	};
 	
 	
+	/* 
+    *	Executes search for each inputstate changed 
+	*/
 	Knowtly.prototype.search = function( inputElement ){
     	var form = $(me.element);
     	form.attr('data-requestcount', parseInt(form.attr('data-requestcount')) + 1);
@@ -113,12 +116,15 @@
 		});	
 	};
 	
+	
 	Knowtly.prototype.getView = function(view, contentType){
     	var result = $.ajax({
         	url: me.options.actionUrl,
         	type: 'GET',
-        	data:{view: view, 
-        	contentType: contentType},
+        	data:{
+            	view: view, 
+                contentType: contentType
+            },
             async: false
         });
     	return result.responseText;    	
@@ -159,10 +165,23 @@
             return this;           
         }
     };
-    
+    // plugin the command
     $.extend($.fn.knowtly.commands, commands);
-   
     
+    
+    
+    /* command: DOC 
+    * - searches in enonic doc with searchblox 
+    */
+    var docCommand = {
+        'doc': function(args){
+            console.log(args);
+            
+            var searchResultView = $.fn.knowtly.api.get.view('list', 'note');
+            
+        }
+    }
+    $.extend($.fn.knowtly.commands, docCommand);
     
 })(jQuery);
 

@@ -4,7 +4,7 @@
 		<div id="commandLineWrapper" class="commandLineWrapper">
 			<ol class="validCommands">
 			</ol>
-			<input list="tag-list" type="search" name="q" placeholder="Query or commando [new]" autocomplete="off" autofocus="true"/>
+			<input list="tag-list" type="search" name="q" placeholder="Query or commando [new|doc]" autocomplete="off" autofocus="true"/>
 		</div>
 		<datalist id="tag-list">
 			<option data-th-each="tag : ${tags}" data-th-attr="value=${tag.key + ' (' + tag.doc_count + ')'}" data-th-text="${tag.key + ' ' + tag.doc_count}" />

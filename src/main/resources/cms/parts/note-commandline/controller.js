@@ -24,7 +24,11 @@ exports.get = function( req ){
             actionUrl: actionUrl
             
         };
-        
+    } else if( urlParams.view == 'searchblox' && urlParams.contentType == 'result') {
+          
+          
+          
+          
 	}else {
     	
     	
