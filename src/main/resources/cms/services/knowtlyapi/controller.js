@@ -3,33 +3,104 @@ var util = require('utilities');
 var markdown = require('markdown');
 
 /**************************
-*	GET
+*	GET: get what?
+*   views, search results, 
 ****************************/
 exports.get = function( req ){
     
     var urlParams = req.params;
-    var site = execute('portal.getSite');
-    var searchbloxUrl = site.moduleConfigs[module.name].searchbloxpath;
-    
-    
     var actionUrl = execute('portal.serviceUrl', {
     		service: 'knowtlyapi'
     	});
 	
-    var param = {
-        searchbloxUrl: searchbloxUrl,
-        actionUrl: actionUrl
-    }
-    var view = resolve('note-commandline.html');
-    return stk.view.render(view, param);
+	var viewFile = urlParams.view;
+	var action = urlParams.action; // [search, view]
+	var q = urlParams.q;
+	
+    //  from the java plugin
+	//var something = execute("knowtly.hello", {"name": "BOOM"});
+    var view, param;
+    
+    // show new editor
+    if( urlParams.view == 'new' && urlParams.contentType != '' ){
+        
+        view = resolve('views/new-' + urlParams.contentType + '.html');    
+        param = {
+            actionUrl: actionUrl
+            
+        };
+        
+    } else if( urlParams.view == 'searchblox' && urlParams.contentType == 'result') {
+          
+        var view = resolve('../../parts/note-list/note-list.html');
+        var site = execute('portal.getSite');
+        //stk.log(site);
+        //stk.log(site.moduleConfigs[module.name].searchbloxpath);
+        
+        var serviceUrl = execute('portal.serviceUrl', {
+            service: 'searchblox'
+        });
+            
+        //stk.log(serviceUrl);
+       
+        
+        var param = {
+            actionUrl: actionUrl,
+            serviceUrl: serviceUrl    
+        }
+            
+        /* {
+            body: execute('thymeleaf.render', { view: view, model: params }),
+            contentType: 'text/html' 
+        };*/
+
+          
+          
+	}else {
+    	
+    	// get tags
+    	var aggregationResult = execute('content.query', {
+    		start: 0,
+    		count: 0,
+    		sort: 'createdTime DESC',
+    		contentTypes: [module.name + ":note"],
+    		
+    		aggregations: {
+    	        tags: {
+    	            terms: {
+    	                field: "data.tags",
+    	                order: "_count desc",
+    	                size: 50
+    	            }
+    	        }
+            
+        }	});
+    	
+    	var tags = new Array();
+    	for( var i = 0; i < aggregationResult.total; i++ ){
+    		var localData = aggregationResult.aggregations.tags.buckets[i];
+    		tags.push(localData);
+    	}
+    	
+    	param = {
+    		actionUrl: actionUrl,
+    		tags: tags,
+    		tagCount: aggregationResult.total
+    	};
+    
+    	view = resolve('../../parts/note-commandline/note-commandline.html');
+	}
+	
+	return stk.view.render(view, param);	
 };
 
 
 
 /**************************
 *	POST 
+*   new notes,
 ****************************/
-/*exports.post = function( req ){
+exports.post = function( req ){
 		
 	var urlParams = req.formParams;
 	var site = execute('portal.getSite');
@@ -42,11 +113,11 @@ exports.get = function( req ){
 	var view;
 	
 	//  check if user is logged in
-    /*	if( Integer.parseInt(userResult.total) == 0 ){
+/*	if( Integer.parseInt(userResult.total) == 0 ){
 	    
 	    view = resolve('log-in.html');
 	    
-	} else {*//*
+	} else {*/
     	if( urlParams.create == 'note' ){
             
             //create new 'note'
@@ -104,10 +175,10 @@ exports.get = function( req ){
         		requestid: urlParams.requestid
         	}	
         	
-        	view = resolve('../note-list/note-list.html');
+        	view = resolve('../../parts/note-list/note-list.html');
     	}
 	//}
 	
 	return stk.view.render(view, param);
 	
-};*/
+};

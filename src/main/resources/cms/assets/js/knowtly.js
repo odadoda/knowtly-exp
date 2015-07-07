@@ -176,8 +176,16 @@
     var docCommand = {
         'doc': function(args){
             console.log(args);
-            
-            var searchResultView = $.fn.knowtly.api.get.view('list', 'note');
+            // this is fun. pass result from searchblox into controller
+            $.ajax(url,{
+                type:"get",
+                data: {
+                    q:args
+                }
+            }).done(function(){
+                
+            });          
+//            var searchResultView = $.fn.knowtly.api.get.view('list', 'note');
             
         }
     }
