@@ -53,10 +53,6 @@
         
         $.fn[pluginName].api = this.api;
         
-        // add stuff to 
-        $(this.element).find('.body-text').on('focusin', function(){
-            console.log('focus');
-        });
     }
 	
 	
@@ -99,7 +95,6 @@
 	// executes the first "comand" in commandlist, passing on arguments
 	Knowtly.prototype.executeCommand = function(args){
     	me.commands[ me.options.commandlist.children('li').eq(0).html() ](args);
-    	
 	};
 	
 	
@@ -175,10 +170,10 @@
     */
     var docCommand = {
         'doc': function(args){
-            console.log(args);
-            
-            var searchResultView = $.fn.knowtly.api.get.view('list', 'note');
-            
+            var searchUrl = $($.fn.knowtly.api.element).parent().attr('data-searchbloxUrl');
+            $.get(searchUrl, {q:args}, function(data){
+                $('.js-note-list').html( data );    
+            });
         }
     }
     $.extend($.fn.knowtly.commands, docCommand);

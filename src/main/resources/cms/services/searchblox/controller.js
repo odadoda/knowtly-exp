@@ -26,27 +26,22 @@ exports.get = function( req ){
     for(var i = 0; i < resultArray.length; i++){
         var content = {};
         content.title = resultArray[i].title;
-        content.description = resultArray[i].description;    
-        content.lastModified = resultArray[i].lastmodified;
+        content.markdownParsedBody = resultArray[i].description;    
+        content.pubDate = resultArray[i].lastmodified;
+        content.url = resultArray[i].url;
         results.push(content);    
     }
         
-    var data = {
+    var params = {
         meta: meta,
-        results: results,
+        notes: results,
         result: "pewpew" // searchbloxResult.results.result        
     };
+    
+    var view = resolve('../../parts/note-list/note-list.html');
      
-/*     
     return {
         body: execute('thymeleaf.render', { view: view, model: params }),
         contentType: 'text/html' 
     };
-*/
-    
-    return {
-        body: data,
-        contenType: 'application/json'
-    };
-    
 };

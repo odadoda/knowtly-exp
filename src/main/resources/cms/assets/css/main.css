@@ -97,28 +97,54 @@ code {
 }
 
 .note {
-	display: flex;
-	margin: 10px;
+    margin: 10px auto 50px;
+    
 }
 
 .note header {
-	order: 1;
-	flex: 1 1 22%;
+    display: flex
+}
+
+.note header h2,
+.note header a {
+    font-weight: bold;
+    order: 2;
+    flex: 1 1 62%;
+    color: inherit;
+}
+
+
+.note header time {
+    order: 1;    
+    flex: 1 1 38%;
+    text-align: right;
+    padding: 0 10px 0 0;
+}
+
+.note .row {
+    display: flex;
 }
 
 .note aside {
-	order: 2;
-	flex: 1 1 11%;
+    flex: 1 1 38%;
+    order: 1;
+    padding: 0 10px;
+    text-align: right;
 }
 
 .note .main {
-	flex: 1 1 66%;
-	order: 3;
-	padding: 0 10px;
+	flex: 1 1 62%;
+    order: 2;
+    padding: 0 10px 0 0;
 }
 
-.note dd {
-	padding:0 3px;
+.note .tags {
+    padding-left: 52%;
+    width: 48%;
+}
+
+
+.note dd {	padding:0 3px;
 	background: skyblue;
 	border-bottom: 1px dashed #eee;	
 }
