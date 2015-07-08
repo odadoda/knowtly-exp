@@ -9,9 +9,11 @@ var markdown = require('markdown');
 exports.get = function( req ){
     
     var urlParams = req.params;
+    
     var actionUrl = execute('portal.serviceUrl', {
     		service: 'knowtlyapi'
     	});
+	
 	
 	var viewFile = urlParams.view;
 	var action = urlParams.action; // [search, view]
@@ -21,7 +23,7 @@ exports.get = function( req ){
 	//var something = execute("knowtly.hello", {"name": "BOOM"});
     var view, param;
     
-    // show new editor
+    // show note editor
     if( urlParams.view == 'new' && urlParams.contentType != '' ){
         
         view = resolve('views/new-' + urlParams.contentType + '.html');    
@@ -29,34 +31,25 @@ exports.get = function( req ){
             actionUrl: actionUrl
             
         };
-        
+    
+    
+    // search with searchblox    
     } else if( urlParams.view == 'searchblox' && urlParams.contentType == 'result') {
-          
+        
         var view = resolve('../../parts/note-list/note-list.html');
         var site = execute('portal.getSite');
-        //stk.log(site);
-        //stk.log(site.moduleConfigs[module.name].searchbloxpath);
-        
         var serviceUrl = execute('portal.serviceUrl', {
             service: 'searchblox'
         });
-            
-        //stk.log(serviceUrl);
-       
         
         var param = {
             actionUrl: actionUrl,
             serviceUrl: serviceUrl    
         }
-            
-        /* {
-            body: execute('thymeleaf.render', { view: view, model: params }),
-            contentType: 'text/html' 
-        };*/
-
-          
-          
-	}else {
+    
+    
+    // else search content in enonic      
+	} else {
     	
     	// get tags
     	var aggregationResult = execute('content.query', {
@@ -76,11 +69,13 @@ exports.get = function( req ){
             
         }	});
     	
+    	//  iterate and collect desired data
     	var tags = new Array();
     	for( var i = 0; i < aggregationResult.total; i++ ){
     		var localData = aggregationResult.aggregations.tags.buckets[i];
     		tags.push(localData);
     	}
+    	
     	
     	param = {
     		actionUrl: actionUrl,

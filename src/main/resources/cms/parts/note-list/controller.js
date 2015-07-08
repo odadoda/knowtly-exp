@@ -4,6 +4,7 @@ var markdown = require('markdown');
 
 exports.get = function(req){
 	
+	// 1 get content by query or children
     var content = execute('content.getChildren', {
 	    key: '/knowtly/notes',
 	    start: 0,
@@ -13,12 +14,7 @@ exports.get = function(req){
 	
 	var stuff = execute('portal.getComponent');
 	
-	var urlParams = req.params;
-	
-	var serviceurl = stk.serviceUrl('authenticated', {});
-		
-	
-	stk.log(serviceurl);	
+	var urlParams = req.params;	
 		
 	var query = "";
 	if( urlParams.q ){
@@ -39,7 +35,9 @@ exports.get = function(req){
 	if( result.contents.length > 0){
 		content = result;
 	}
-	    
+	
+	
+	// iterate and collect desired data    
 	var notes = new Array();
 	
 	for( var i = 0; i < content.contents.length; i++ ){
@@ -55,7 +53,7 @@ exports.get = function(req){
     var params = {
 		notes: notes
 	};
-	
+
 	var view = resolve('note-list.html');
 	
 	return stk.view.render(view, params);

@@ -9,15 +9,17 @@ exports.get = function( req ){
     
     var urlParams = req.params;
     var site = execute('portal.getSite');
-    var searchbloxUrl = site.moduleConfigs[module.name].searchbloxpath;
-    
+    var searchbloxApiUrl = execute('portal.serviceUrl', {
+       service: 'searchblox',
+       params: {test:'test'}
+    });
     
     var actionUrl = execute('portal.serviceUrl', {
     		service: 'knowtlyapi'
     	});
 	
     var param = {
-        searchbloxUrl: searchbloxUrl,
+        searchbloxUrl: searchbloxApiUrl,
         actionUrl: actionUrl
     }
     var view = resolve('note-commandline.html');
