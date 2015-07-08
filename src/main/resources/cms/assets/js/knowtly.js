@@ -53,10 +53,6 @@
         
         $.fn[pluginName].api = this.api;
         
-        // add stuff to 
-        /*$(this.element).find('.body-text').on('focusin', function(){
-            console.log('focus');
-        });*/
     }
 	
 	
