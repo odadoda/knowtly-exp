@@ -42,9 +42,9 @@ exports.getFormattedDate = function(date) {
     var dateString = exports.getMonthName(date);
     dateString += ' ' + date.getDate();
 
-    if (currentDate.getFullYear() != date.getFullYear()) {
+    //if (currentDate.getFullYear() != date.getFullYear()) {
         dateString += ', ' + date.getFullYear();
-    }
+    //}
     return dateString;
 };
 

@@ -162,6 +162,9 @@ exports.post = function( req ){
                 date = util.getFormattedDate(date);
                 data.markdownParsedBody = markdown.markdown.parse(data.text);
                 data.pubDate = date;
+                data.url = execute('portal.pageUrl', {
+            		path: result.contents[i]._path
+                });
         		notes.push(data);
         	}
         	

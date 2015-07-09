@@ -1,0 +1,29 @@
+<section class="js-note-list" data-th-attr="data-for-request=${requestid}"> 
+	<article data-th-each="note : ${notes}" class="note">
+		<header>    		
+    		<a data-th-href="${note.url}"  data-th-if="${note.url != null}">
+			    <h2 data-th-text="${note.title}">Note title</h2>
+    		</a>
+		    <h2 data-th-text="${note.title}" data-th-if="${note.url == null}">Note title</h2>
+            
+			<time data-th-text="${note.pubDate}">Febrauararu 72</time>
+		</header>
+		<div class="row">
+    		<div data-th-utext="${note.markdownParsedBody}" class="main body-text" contenteditable="true">
+    			<p> Aliquam erat volutpat. Suspendisse ut elementum arcu. Ut luctus elit ut erat scelerisque gravida. </p>
+    			<p> Sed lobortis nisl libero, id convallis erat maximus ut. Nunc viverra magna ut lectus vestibulum, eget sagittis odio volutpat. In porttitor tempor purus a suscipit. Integer vitae elit ac nunc pretium pharetra.</p>
+    		</div>
+    		<aside>
+    			<dl class="tags">
+    				<dt class="audible">Tags</dt>
+    				<dd data-th-each="tag : ${note.tags}">
+    					<a data-th-attr="href=${'?q='+tag}" data-th-text="${tag}" >
+    						sf
+    					</a>
+    				</dd>
+    			</dl>
+    		</aside>
+		</div>
+	</article>
+
+</section>

@@ -4,6 +4,8 @@ var markdown = require('markdown');
 
 exports.get = function(req){
 	
+	stk.log('note-list');
+	
 	// 1 get content by query or children
     var content = execute('content.getChildren', {
 	    key: '/knowtly/notes',
@@ -47,6 +49,9 @@ exports.get = function(req){
         date = util.getFormattedDate(date);
         data.markdownParsedBody = markdown.markdown.parse(data.text);
         data.pubDate = date;
+		data.url = execute('portal.pageUrl', {
+    		path: content.contents[i]._path
+        });
 		notes.push(data);
 	}
 	
