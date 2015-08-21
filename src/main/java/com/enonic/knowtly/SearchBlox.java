@@ -9,9 +9,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by oda on 02.07.15.
- */
 
 @Component(immediate = true, service = CommandHandler.class)
 public class SearchBlox implements CommandHandler {
@@ -45,7 +42,7 @@ class HttpConnection {
         URL obj = new URL(url + "?query="+q + "&xsl=json");
         HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
 
-        connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+        //connection.setRequestProperty("User-Agent", "Mozilla/5.0");
 
         int responseCode = connection.getResponseCode();
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));

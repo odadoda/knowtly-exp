@@ -6,17 +6,20 @@ exports.get = function(req) {
 	
 	var content = execute('portal.getContent');	
 	var site = execute('portal.getSite');
-	//stk.log(site);
-	var randomnumber = 1;// (Math.floor(Math.random()*11) % 4 );
+	
+	stk.log(site.moduleConfigs[module.name]);
+	
 		
 	var params = { 
-    	colorScheme: site.data.moduleConfig.config.colorscheme,
+    	colorScheme: site.moduleConfigs[module.name].colorscheme,
 		mainRegion: content.page.regions['main'],
 		content: content,
 		message: "Hello pewpew",
-		title: site._name,
-		randomnumber: randomnumber
+		title: site._name
 	}
+	
+	
+	
 	var view = resolve('note.html');
 	
 	return {

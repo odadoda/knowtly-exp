@@ -10,6 +10,8 @@
 	          data-th-href="${portal.assetUrl({'_path=img/favicon.ico'})}" type="image/x-icon"/>
 	    
 	    <link rel="stylesheet" data-th-href="${portal.assetUrl({'_path=css/main.css'})}" href="/assets/css/main.css"/>
+
+        <!--/* Script */-->
 	    <script type="text/javascript" src="../../assets/js/fp.js"
 	            data-th-src="${portal.assetUrl({'_path=js/jquery.min.js'})}"></script>
 	    
@@ -25,7 +27,7 @@
 	            
 	</head>
 
-	<body data-portal-component-type="page" data-th-attr="class=${ 'style-' + #numbers.formatInteger(randomnumber, 1) + ' ' + colorScheme }" >
+	<body data-portal-component-type="page" data-th-attr="class=${ colorScheme }" >
 		
 		<header>
 			<h1 class="audible"><span data-th-text="${title}">Pewpew Pew</span></h1>

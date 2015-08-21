@@ -3,7 +3,7 @@ var util = require('utilities');
 var markdown = require('markdown');
 
 /**************************
-*	GET: get what?
+*	GET:
 *   views, search results, 
 ****************************/
 exports.get = function( req ){
@@ -20,7 +20,7 @@ exports.get = function( req ){
 	var q = urlParams.q;
 	
     //  from the java plugin
-	//var something = execute("knowtly.hello", {"name": "BOOM"});
+	//  var something = execute("knowtly.hello", {"name": "BOOM"});
     var view, param;
     
     // show note editor
@@ -136,7 +136,7 @@ exports.post = function( req ){
                 })
             };
         
-    	} else { 
+    	} else {   
         	
             // else get content
         	var query = "";
