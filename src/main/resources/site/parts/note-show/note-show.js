@@ -7,8 +7,8 @@ exports.get = function( req ){
     stk.log('note-single');
     
     /* get current content based on the content-id*/
-    var result = execute('portal.getContent');
-    stk.log(result);
+    var result = portal.getContent();
+
     
     var notes = new Array();
     var data = result.data;

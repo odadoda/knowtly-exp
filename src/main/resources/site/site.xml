@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<module>
+<site>
 	<display-name>Knowtly</display-name>
 	<info>Your own quick knowledge </info>
 	<url>http://enonic.com</url>
@@ -35,4 +35,4 @@
             <occurrences minimum="0" maximum="1" />
         </input>
 	</config>
-</module>
+</site>
