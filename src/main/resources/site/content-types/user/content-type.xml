@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<content-type>
+	<display-name>User</display-name>
+	<super-type>base:structured</super-type>
+	
+	<form>
+		<input name="Name" type="TextLine">
+			<label>Title</label>
+			<occurrences minimum="0" maximum="1" />
+			<help-text>Note title</help-text>
+		</input>
+	</form>
+</content-type>

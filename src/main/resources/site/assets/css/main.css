@@ -1,0 +1,410 @@
+* {
+	font-family: "menlo", monospace;
+}
+
+
+::-moz-selection {
+    background: hotpink;
+    text-shadow: none;
+}
+
+::selection {
+    background: hotpink;
+    text-shadow: none;
+}
+
+
+body {
+	background: #eee;
+	color: #111;
+	position: relative;
+	margin: 0;
+}
+
+body.plasticboutique {
+    background: #eb29c4;
+    color: #6df20e;   
+}
+
+body.wornpiranha {
+    background: #dd3f45;
+    color: #fff793;
+}
+
+h1,h2,h3,h4,h5,h6,li,dt,dd,p,a,div {
+	font-size: 12px;
+	font-weight: normal;
+	margin: 0;
+	line-height: 1.8;
+}
+
+
+.body-text h2 {
+    font-weight: bold;
+}
+
+.body-text h2:before,
+.body-text h1:before {
+    content: "### ";
+    
+}
+
+.body-text h3 {
+}
+
+dl,dt,dd {
+	margin:0;
+}
+
+code {
+    background: #333 none repeat scroll 0 0;
+    color: #eee;
+    display: block;
+    padding: 0 5px;
+    white-space: pre;
+}
+
+.wornpiranha code {
+    background: #938389;
+    color: #fff793;
+}
+
+
+
+.audible {
+	position: absolute;
+	left: -100000px;
+}
+
+.layout-33-66 {
+	width: 100%;
+	min-height: 50px;
+	background: skyblue;	
+}
+
+.c33 {
+	float: left;
+	width:33%;
+	min-height: 50px;
+	background-color: yellow;
+}
+
+.c66 {
+	float:left;
+	width: 66%;
+	min-height: 50px;
+	background-color: 
+}
+
+.note {
+    margin: 10px auto 50px;
+    
+}
+
+.note header {
+    display: flex
+}
+
+.note header h2,
+.note header a {
+    font-weight: bold;
+    order: 2;
+    flex: 1 1 62%;
+    color: inherit;
+}
+
+
+.note header time {
+    order: 1;    
+    flex: 1 1 38%;
+    text-align: right;
+    padding: 0 10px 0 0;
+}
+
+.note .row {
+    display: flex;
+}
+
+.note aside {
+    flex: 1 1 38%;
+    order: 1;
+    padding: 0 10px;
+    text-align: right;
+}
+
+.note .main {
+	flex: 1 1 62%;
+    order: 2;
+    padding: 0 10px 0 0;
+}
+
+.note .tags {
+    padding-left: 52%;
+    width: 48%;
+}
+
+
+.note dd {	padding:0 3px;
+	background: skyblue;
+	border-bottom: 1px dashed #eee;	
+}
+
+.plasticboutique .note dd {
+    background: yellow;
+}
+
+.wornpiranha .note dd {
+    background: #938389;
+}
+
+.tags a {
+	color:inherit;
+}
+
+.wornpiranha .tags a {
+    color: #f8f799;
+}
+
+.plasticboutique .tags a {
+    color: orange;
+}
+
+
+.tags a:visited {
+	color: rgba(250,250,250,0.7);
+}
+
+.note dd:last-child {
+	border: 0 none;
+}
+#knowtly-search {
+	padding: 10px;	
+}
+
+
+
+.knowtly-wrap {
+	box-sizing: border-box;
+	width: 100%;
+	border: 0px none;
+	background: #333;
+	color: #eee;
+	padding: 10px;
+	overflow: hidden;
+}
+
+.plasticboutique .knowtly-wrap {
+    background: rgba(180, 200, 0, 1);
+}
+.wornpiranha .knowtly-wrap {
+    background: #938389;
+    color: inherit;
+}
+
+.knowtly-wrap input,
+.knowtly-wrap textarea {
+	width: auto;
+	margin: 0;
+	background: transparent;
+	padding: 0;
+	line-height: 1.8;
+	border: 0 none;
+	color: #eee;
+	font-family: inherit;
+	font-size: inherit;
+    width: 100%;
+}
+
+.wornpiranha .knowtly-wrap input,
+.wornpiranha .knowtly-wrap textarea {
+    color: #f8f799;
+}
+	
+
+.knowtly-wrap textarea {
+    height: 250px;
+}
+#knowtly-search input[type=submit]{
+	display: none;
+}
+
+.knowtly-wrap input[type="search"] {
+	width: 80%;
+}
+
+
+.knowlty-wrap input:not(.tags){
+    float: left;
+	
+}
+
+
+
+
+.knowtly-wrap input[type="submit"]{
+	//display: none;
+    background-color: #89af42;
+    width: 100%;
+}
+
+
+
+.giveDifferentColors:nth-child(2){
+    color: yellow;
+}
+.giveDifferentColors:nth-child(3){
+
+    color: skyblue;
+}
+
+.giveDifferentColors:nth-child(4){
+    color: orange;
+}
+.giveDifferentColors:nth-child(5){
+        color: fuchsia;
+}
+
+.validCommands {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	float: left;
+		
+}
+
+.validCommands li {
+	padding: 0 5px;
+	float: left;
+	background: lightgray;
+	color: #111;
+	margin: 0 5px 0 0;
+}
+
+
+
+/**
+ * Tagator jQuery Plugin
+ * A plugin to make input elements, tag holders
+ * version 1.0, Jan 13th, 2014
+ * by Ingi P. Jacobsen
+ */
+
+/* reset */
+.tagator * {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	text-decoration: none;
+}
+
+/* dimmer */
+#tagator_dimmer {
+	background-color: rgba(0,0,0,.1);
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 100;
+}
+
+/* Main box */
+.tagator {
+	/*border: 1px solid #abadb3;
+	border-radius: 3px;
+	box-sizing: border-box;
+	background-color: #fff;
+	*/display: inline-block;
+	text-decoration: none;
+}
+.tagator.options-visible {
+	position: relative;
+	z-index: 101;
+}
+
+/* chosen items holder */
+.tagator_tags {
+	display: inline;
+}
+
+/* chosen item */
+.tagator_tag {
+	display: inline-block;
+	background-color: #39f;
+	border-radius: 2px;
+	color: #fff;
+	padding: 0 20px 0px 4px;
+	font-size: 13px;
+	margin: 0 2px;
+	position: relative;
+	vertical-align: top;
+}
+
+/* chosen item remove button */
+.tagator_tag_remove {
+	display: inline-block;
+	font-weight: bold;
+	color: #fff;
+	margin: 0 0 0 5px;
+	padding: 6px 5px 4px 5px;
+	cursor: pointer;
+	font-size: 11px;
+	line-height: 10px;
+	vertical-align: top;
+	border-radius: 0 2px 2px 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+.tagator_tag_remove:hover {
+	color: #000;
+	background-color: #8cf;
+}
+
+/* input box */
+.tagator_input,
+.tagator_textlength {
+	border: 0;
+	display: inline-block;
+	margin: 2;
+	background-color: transparent;
+	font-size: 13px;
+	outline: none;
+	padding: 4px 0 0 5px;
+}
+
+.knowtly-wrap .tagator_input {
+	/*padding: 0px 0px;*/
+	margin:2px;
+}
+
+/* options holder */
+.tagator_options {
+	margin: 0;
+	padding: 0;
+	border: 1px solid #7f9db9;
+	border-radius: 0 0 3px 3px;
+	font-family: sans-serif;
+	position: absolute;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	z-index: 101;
+	background-color: #fff;
+	overflow: auto;
+	max-height: 250px;
+	list-style: none;
+	left: -1px;
+	right: -1px;
+}
+.tagator.options-hidden .tagator_options {
+	display: none;
+}
+
+/* result item */
+.tagator_option {
+	padding: 5px;
+	cursor: pointer;
+	color: #000;
+}
+.tagator_option.active {
+	background-color: #39f;
+	color: #fff;
+}

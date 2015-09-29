@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<display-name>Knowtly</display-name>
+	<info>Your own quick knowledge </info>
+	<url>http://enonic.com</url>
+	<vendor>
+		<name>Enonic AS</name>
+		<url>http://www.enonic.com</url>
+	</vendor>
+	<dependencies system-min-version="5.0.0" system-max-version="6.0.0" />
+	<config>
+        <input name="colorscheme" type="SingleSelector">
+            <label>Color scheme</label>
+            <occurrences minimum="0" maximum="1"/>
+            <config>
+                <options>
+                    <option>
+                        <label>Strictly Bureau</label>
+                        <value>strictly-bureau</value>
+                    </option>
+                    <option>
+                        <label>Worn Piranha</label>
+                        <value>wornpiranha</value>
+                    </option>
+                    <option>
+                        <label>Plastic Boutique</label>
+                        <value>plasticboutique</value>
+                    </option>
+                </options>
+                <selector-type>DROPDOWN</selector-type>
+            </config>
+        </input>
+        <input type="text" name="searchbloxpath">
+            <label>Searchblox path</label>
+            <occurrences minimum="0" maximum="1" />
+        </input>
+	</config>
+</module>
