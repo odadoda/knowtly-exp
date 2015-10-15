@@ -52,19 +52,30 @@ h1,h2,h3,h4,h5,h6,li,dt,dd,p,a,div {
 .body-text h3 {
 }
 
+
+
 dl,dt,dd {
 	margin:0;
 }
 
-code {
+.maincontentwrap {
+    display: flex;
+}
+
+pre, code {
     background: #333 none repeat scroll 0 0;
     color: #eee;
     display: block;
     padding: 0 5px;
     white-space: pre;
+    width:0;
+    min-width: 100%;
+    overflow-x: scroll;
+    box-sizing: border-box;
 }
 
-.wornpiranha code {
+.wornpiranha code,
+.wornpiranha pre {
     background: #938389;
     color: #fff793;
 }
@@ -119,6 +130,7 @@ code {
     flex: 1 1 38%;
     text-align: right;
     padding: 0 10px 0 0;
+    box-sizing: border-box;
 }
 
 .note .row {
@@ -126,10 +138,11 @@ code {
 }
 
 .note aside {
-    flex: 1 1 38%;
+    flex: 1 0 38%;
     order: 1;
     padding: 0 10px;
     text-align: right;
+    box-sizing: border-box;
 }
 
 .note .main {
@@ -154,15 +167,16 @@ code {
 }
 
 .wornpiranha .note dd {
-    background: #938389;
+    background: #fff793;/*#938389;*/
+    border-bottom: 1px dashed #dd3f45;
 }
 
 .tags a {
-	color:inherit;
+	color:#dd3f45;
 }
 
 .wornpiranha .tags a {
-    color: #f8f799;
+    color: #dd3f45;/*#f8f799;*/
 }
 
 .plasticboutique .tags a {

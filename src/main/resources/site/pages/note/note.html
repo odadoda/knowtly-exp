@@ -2,8 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8"/>
-	    <meta name="viewport"
-	          content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=1.0"/>
+	    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=1.0"/>
 	    <meta data-th-each="og : ${openGraph}" data-th-attr="property=${og.key},content=${og.value}" property="" content=""/>
 	    <title data-th-text="${title}">Dun Dun Duuduuduuduuduudu</title>
 	    <link rel="shortcut icon" href="../../assets/img/favicon.ico"
@@ -23,6 +22,8 @@
 
 	    <script type="text/javascript" src="../../assets/js/fp.js"
 	            data-th-src="${portal.assetUrl({'_path=js/main.js'})}"></script>
+	            
+	           
 	    
 	            
 	</head>
@@ -33,7 +34,7 @@
 			<h1 class="audible"><span data-th-text="${title}">Pewpew Pew</span></h1>
 		</header>
 		<div class="main">
-			<div data-portal-component-type="region">
+			<div data-portal-region="main" >
 	            <div data-th-each="component : ${mainRegion.components}" data-th-remove="tag">
 	                <div data-portal-component="${component.path}" data-th-remove="tag" />
 	            </div>

@@ -1,27 +1,35 @@
-var stk = require('stk/stk');
-var util = require('utilities');
-var markdown = require('markdown');
+var libs = {
+     util: require('/lib/enonic/util/util'),
+     content: require('/lib/xp/content'),
+     thymeleaf: require('/lib/xp/thymeleaf'),
+     portal: require('/lib/xp/portal')
+}
+
+var months = ['January', 'Fabruary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+
 
 exports.get = function( req ){
-  
-    stk.log('note-single');
-    
+      
     /* get current content based on the content-id*/
-    var result = portal.getContent();
-
+    var currentContent = libs.portal.getContent();
+    libs.util.log(currentContent);
     
-    var notes = new Array();
-    var data = result.data;
+    var notes = Array();
     
-	var date = new Date( result.createdTime );
-    date = util.getFormattedDate(date);
     
-	data.markdownParsedBody = markdown.markdown.parse(data.text);
-    data.pubDate = date;
+    var note = {};
+	if(currentContent.type == 'wpsync:wordpresspost'){
+		var date = new Date( currentContent.data.dategmt );
+        note.contentUrl = libs.portal.pageUrl({id: currentContent._id});
+        note.markdownParsedBody = currentContent.data.content;
+        note.pubDate = date.getDate() + ' ' + months[date.getMonth()]  + ' ' + date.getFullYear();
+        note.title = currentContent.data.title;
+        note.tags = currentContent.data.tags;            
+    }
     
-	notes.push(data);
+	notes.push(note);
     
-    stk.log(data);
     /* the data that thymeleaf will replace dummy text with */
     var model = {
         notes: notes                
@@ -32,7 +40,7 @@ exports.get = function( req ){
     
     /* return an object with content in the body, and contenttype */ 
     return {
-        body: execute('thymeleaf.render', {view: view, model: model}),
+        body: libs.thymeleaf.render(view,model),
         contentType: 'text/html'   
     }
 };

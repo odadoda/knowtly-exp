@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <site>
 	<display-name>Knowtly</display-name>
-	<info>Your own quick knowledge </info>
+	<info>Your own quick knowledge bank</info>
 	<url>http://enonic.com</url>
 	<vendor>
 		<name>Enonic AS</name>
 		<url>http://www.enonic.com</url>
 	</vendor>
-	<dependencies system-min-version="5.0.0" system-max-version="6.0.0" />
+	<dependencies system-min-version="6.0.0" system-max-version="7.0.0" />
 	<config>
-        <input name="colorscheme" type="SingleSelector">
+        <input name="colorscheme" type="RadioButton">
             <label>Color scheme</label>
             <occurrences minimum="0" maximum="1"/>
             <config>
-                <options>
-                    <option>
+<!--                 <options> -->
+                    <option value="strictly-bureau">Strictly Bureau</option>
+<!--
                         <label>Strictly Bureau</label>
                         <value>strictly-bureau</value>
                     </option>
-                    <option>
+-->
+                    <option value="wornpiranha">Worn Piranha</option>
+<!--
                         <label>Worn Piranha</label>
                         <value>wornpiranha</value>
                     </option>
-                    <option>
+-->
+                    <option value="plasticboutique">Plastic Boutique</option>
+<!--
                         <label>Plastic Boutique</label>
                         <value>plasticboutique</value>
                     </option>
-                </options>
-                <selector-type>DROPDOWN</selector-type>
+-->
+<!--                 </options> -->
             </config>
         </input>
-        <input type="text" name="searchbloxpath">
-            <label>Searchblox path</label>
-            <occurrences minimum="0" maximum="1" />
-        </input>
-	</config>
+    </config>
 </site>

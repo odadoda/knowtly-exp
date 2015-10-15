@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<layout>
-	<display-name>33-66</display-name>
-	<config/>
-	<regions>
-		<region name="left"/>
-		<region name="right"/>
-	</regions>
-</layout>
