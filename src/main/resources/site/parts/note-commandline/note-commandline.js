@@ -139,8 +139,20 @@ exports.post = function( req ){
                 note.pubDate = date.getDate() + ' ' + months[date.getMonth()]  + ' ' + date.getFullYear();
                 note.title = currentContent.data.title;
                 note.tags = currentContent.data.tags;            
+            
+            } else if(currentContent.type == app.name+':note'){
+                
+                var date = new Date( currentContent.createdTime );
+                note.pubDate = date.getDate() + ' ' + months[date.getMonth()]  + ' ' + date.getFullYear();
+                note.contentUrl = libs.portal.pageUrl({id: currentContent._id});
+                note.markdownParsedBody = currentContent.data.text;
+                note.title = currentContent.data.title;
+                note.tags = currentContent.data.tags;
+                
             }
-		notes.push(note);
+            
+            
+            notes.push(note);
     	}
     	
     	var param = {
