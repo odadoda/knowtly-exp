@@ -89,11 +89,13 @@ exports.post = function( req ){
 	var site = libs.portal.getSite();
 	var view;
 	if( typeof(urlParams.create) != 'undefined' && urlParams.create == 'note' ){
-    
+        
+        libs.util.log(urlParams);
+        
         var result = libs.content.create( {
             name: urlParams.title,
             displayName: urlParams.title,
-            contentType: module.name + ':note',
+            contentType: app.name + ':note',
             parentPath: site._path + '/notes',
             breanch: 'master',
             data: {
@@ -103,12 +105,16 @@ exports.post = function( req ){
             }
         });
         
+        libs.util.log(result);
+        
         var content = libs.portal.getContent();
         return {
             redirect: libs.portal.pageUrl({
                 path: content._path
             })
         };
+        
+        libs.util.log('poopinator');
 
 	}else if(typeof(urlParams.q) != 'undefined' ){
     
@@ -132,6 +138,7 @@ exports.post = function( req ){
     	for( var i = 0; i < result.hits.length; i++ ){
     		var currentContent = result.hits[i];
     		var note = {};
+        	
         	if(currentContent.type == 'wpsync:wordpresspost'){
             	note.contentUrl = libs.portal.pageUrl({id: currentContent._id});
         		var date = new Date( currentContent.data.dategmt );
