@@ -21,6 +21,8 @@ exports.get = function(req){
     	});
 	}
 	
+	libs.util.log("~~~~~~~");
+	libs.util.log(content);
 	
 	var urlParams = req.params;
 	
@@ -47,17 +49,28 @@ exports.get = function(req){
 	
 	var notes = new Array();
 	if(typeof(content.hits) != 'undefined'){
+    	libs.util.log('poop');
     	for( var i = 0; i < content.hits.length; i++ ){
-        	var currentContent = content.hits[i];
+        	libs.util.log(i);
+            var currentContent = content.hits[i];
     		var note = {};
         	if(currentContent.type == 'wpsync:wordpresspost'){
         		var date = new Date( currentContent.data.dategmt );
                 note.contentUrl = libs.portal.pageUrl({id: currentContent._id});
-                libs.util.log(note.contentUrl);
-        	    note.markdownParsedBody = currentContent.data.content;
+                
+                note.markdownParsedBody = currentContent.data.content;
                 note.pubDate = date.getDate() + ' ' + months[date.getMonth()]  + ' ' + date.getFullYear();
                 note.title = currentContent.data.title;
                 note.tags = currentContent.data.tags;            
+            }else if(currentContent.type == app.name+':note'){
+                
+                var date = new Date( currentContent.createdTime );
+                note.pubDate = date.getDate() + ' ' + months[date.getMonth()]  + ' ' + date.getFullYear();
+                note.contentUrl = libs.portal.pageUrl({id: currentContent._id});
+                note.markdownParsedBody = currentContent.data.text;
+                note.title = currentContent.data.title;
+                note.tags = currentContent.data.tags;
+                
             }
     		notes.push(note);
     	}
@@ -67,6 +80,8 @@ exports.get = function(req){
    var params = {
 		notes: notes
 	};
+	
+	libs.util.log(params);
 	
 	var view = resolve('note-list.html');
 	
